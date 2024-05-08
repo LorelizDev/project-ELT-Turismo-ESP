@@ -25,12 +25,12 @@ def load_to_bigquery(path):
     df['Periodo'] = pd.to_datetime(df['Periodo'], format='%YM%m')
 
     pandas_gbq.to_gbq(
-    df, 'project-elt-turismo-esp.bronze_tourism_raw', project_id='project-elt-turismo-esp', if_exists='append', credentials=credentials
+    df, 'bronze_tourism.bronze_tourism_raw', project_id='project-elt-turismo-esp', if_exists='append', credentials=credentials
     )
 
 #%%
 URL = 'https://www.ine.es/jaxiT3/files/t/csv_bdsc/48423.csv'
 PATH = 'data/tourism_spain_dataset.csv'
-get_data(URL, PATH)
+# get_data(URL, PATH)
 load_to_bigquery(PATH)
 # %%
