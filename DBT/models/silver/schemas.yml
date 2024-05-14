@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: extract_year_month
+  - name: fill_null_totals
+  - name: tourism_spain_slvr
