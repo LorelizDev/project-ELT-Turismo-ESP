@@ -10,7 +10,8 @@ import unicodedata
 # %%
 def get_data(url, path):
     """
-    Funcion que descarga un archivo desde una URL y lo guarda en un archivo local.
+    Descarga un archivo desde una URL y lo guarda en un archivo local.
+    
     Args:
         url (str): URL del archivo a descargar.
         path (str): Ruta del archivo local donde guardar el archivo descargado.
@@ -31,6 +32,15 @@ def get_data(url, path):
         print(f"Error al descargar el archivo. Código de estado: {r.status_code}")
 
 def format_data(path):
+    """
+    Formatea los datos de un archivo CSV, renombra las columnas, reemplaza caracteres especiales y convierte los datos a tipos de datos adecuados.
+
+    Args:
+        path (str): Ruta del archivo CSV a formatear.
+
+    Returns:
+        df (DataFrame): DataFrame con los datos formateados.
+    """
     df = pd.read_csv(path, delimiter=';')
     
     df = df.rename(columns=lambda x: x.lower().replace(' ', '_'))
@@ -50,6 +60,15 @@ def format_data(path):
     return df
 
 def load_to_bigquery(path):
+    """
+    Carga los datos de un archivo CSV a una tabla de BigQuery.
+
+    Args:
+        path (str): Ruta del archivo CSV a cargar.
+
+    Returns:
+        None
+    """
     credentials = service_account.Credentials.from_service_account_file(
         'credentials/project-elt-turismo-esp-98a96a2f8468.json',
     )
